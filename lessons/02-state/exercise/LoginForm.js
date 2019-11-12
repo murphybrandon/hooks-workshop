@@ -12,21 +12,25 @@ export default function LoginForm() {
   const [checkShowPassword, setCheckShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const checkFields = (e) => {
+  const handleLogin = (e) => {
     e.preventDefault();
     setLoading(true)
-    const [emailInput, passwordInput] = e.target.elements;
-    
-    login(emailInput.value, passwordInput.value)
+    const [emailNode, passwordNode] = e.target.elements;
+    let email = emailNode.value;
+    let password = passwordNode.value
+
+    setLoading(true);
+    login(email, password)
       .then(() => {
         setLoading(false);
       })
       .catch(() => {
         alert('error!');
+        setLoading(false);
       })
   }
   return (
-    <form onSubmit={(e) => checkFields(e)}>
+    <form onSubmit={(e) => handleLogin(e)}>
       <VisuallyHidden>
         <label htmlFor="login:email">Email:</label>
       </VisuallyHidden>
