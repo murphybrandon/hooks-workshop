@@ -18,6 +18,7 @@ function TextInput({ id, label, type = "text" }) {
 }
 
 export default function SignupForm() {
+
   const [error, setError] = useState(null)
   const [loading, setLoading] = useState(false)
   const [startDate, setStartDate] = useState(new Date("March 1, 2019"))
@@ -51,6 +52,7 @@ export default function SignupForm() {
         </div>
       )}
 
+        Date
       <form onSubmit={handleSignup}>
         <TextInput id="displayName" label="Display Name" />
         <TextInput id="photoURL" label="Avatar URL" />
@@ -58,12 +60,11 @@ export default function SignupForm() {
         <TextInput id="password" label="Password" />
         <p>
           <span>Start:</span>{" "}
-          <DateFields
-            value={startDate}
-            onChange={setStartDate}
-            start={2018}
-            end={2019}
-          />
+          <DateFields value={startDate} onChange={setStartDate}>
+            <MonthField/>
+            <DayField/>
+            <YearField start={2018} end={2019}/>
+          </DateFields>
         </p>
         <TabsButton>
           <FaDumbbell />
